@@ -18,18 +18,63 @@
         android:layout_height="wrap_content"
         android:text="입력" />
 
-    <EditText
-        android:id="@+id/inputBox"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/inputBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="- 입력 영역 -"
+            android:background="#91a8fc"
+            android:layout_weight="1" />
+
+        <EditText
+            android:id="@+id/inputBox2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="- 입력 영역 -"
+            android:background="#91a8fc"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="- 입력 영역 -"
-        />
+        android:layout_gravity="center_horizontal">
 
-    <Button
-        android:id="@+id/btn2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="버튼2" />
+        <Button
+            android:id="@+id/btnPlus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rotation="45"
+            android:text="더하기" />
+
+        <Button
+            android:id="@+id/btnMinus"
+            android:layout_width="73dp"
+            android:layout_height="wrap_content"
+            android:rotation="45"
+            android:text="빼기" />
+
+        <Button
+            android:id="@+id/btnMult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rotation="45"
+            android:text="곱하기" />
+
+        <Button
+            android:id="@+id/btnDiv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rotation="45"
+            android:text="나누기" />
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -66,6 +111,74 @@
             android:layout_height="wrap_content"
             android:clickable="false"
             android:text="클리커 비활성" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="color"
+            android:id="@+id/textView"
+            android:textColor="#00ff00" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Size16dp"
+            android:id="@+id/textView2"
+            android:textSize="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[typeface serif]"
+            android:id="@+id/textView3"
+            android:typeface="serif" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="default"
+            android:id="@+id/textView6" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[textStyleBold]"
+            android:id="@+id/textView5"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="singleLinesingleLinesingleLinesingleLinesingleLinesingleLinesingleLinesingleLinesingleLinesingleLinesingleLinesingleLinesingleLinesingleLinesingleLinesingleLinesingleLine"
+            android:id="@+id/textView4"
+            android:singleLine="true" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="singleLinesingleLinesingleLinesingleLinesingleLinesingleLinesingleLinesingleLinesingleLinesingleLinesingleLinesingleLinesingleLinesingleLinesingleLinesingleLinesingleLine"
+            android:id="@+id/textView8"
+            android:singleLine="false" />
     </LinearLayout>
 
 
