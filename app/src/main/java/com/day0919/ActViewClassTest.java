@@ -27,8 +27,8 @@ public class ActViewClassTest extends AppCompatActivity {
         btnPlus.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                int num1 = Integer.parseInt(input.getText().toString());
-                int num2 = Integer.parseInt(input2.getText().toString());
+                int num1 = Integer.parseInt(String.valueOf(input.getText()));
+                int num2 = Integer.parseInt(String.valueOf(input2.getText()));
                 Toast.makeText(getApplicationContext(), num1 + num2, Toast.LENGTH_LONG).show();
             }
         });
