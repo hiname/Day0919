@@ -11,4 +11,25 @@
         android:showAsAction="always"
         android:title="일반 메뉴2"/>
 
+    <item
+        android:id="@+id/SimpleMenu3"
+        android:orderInCategory="3"
+        android:showAsAction="always"
+        android:title="서브 메뉴1">
+
+        <menu>
+            <item
+                android:id="@+id/subMenu_2"
+                android:orderInCategory="5"
+                android:showAsAction="never"
+                android:title="서브 메뉴 2"/>
+
+            <item
+                android:id="@+id/subMenu_3"
+                android:orderInCategory="6"
+                android:showAsAction="never"
+                android:title="서브 메뉴 3"/>
+        </menu>
+    </item>
+
 </menu>
