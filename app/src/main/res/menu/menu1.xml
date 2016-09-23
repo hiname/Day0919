@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/SimpleMenu"
+        android:orderInCategory="1"
+        android:showAsAction="always"
+        android:title="일반 메뉴"/>
+
+    <item
+        android:id="@+id/SimpleMenu2"
+        android:orderInCategory="2"
+        android:showAsAction="always"
+        android:title="일반 메뉴2"/>
+
+</menu>
