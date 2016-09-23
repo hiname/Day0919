@@ -22,10 +22,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
-                <ScrollView
-                    android:id="@+id/tab1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
+
                     <TextView
                         android:id="@+id/textView1"
                         android:layout_width="wrap_content"
@@ -33,12 +30,9 @@
                         android:text="test1"
                         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                </ScrollView>
 
-                <ScrollView
-                    android:id="@+id/tab2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
+
+
 
                     <TextView
                         android:id="@+id/textView2"
@@ -46,12 +40,9 @@
                         android:layout_height="wrap_content"
                         android:text="test2"
                         android:textAppearance="?android:attr/textAppearanceMedium" />
-                </ScrollView>
 
-                <ScrollView
-                    android:id="@+id/tab3"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
+
+
 
                     <TextView
                         android:id="@+id/textView3"
@@ -59,7 +50,7 @@
                         android:layout_height="wrap_content"
                         android:text="test3"
                         android:textAppearance="?android:attr/textAppearanceMedium" />
-                </ScrollView>
+
 
             </FrameLayout>
 
