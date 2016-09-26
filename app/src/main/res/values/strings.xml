@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Day0919</string>
+    <string name="title_activity_act_dialog">ActDialog</string>
 </resources>
