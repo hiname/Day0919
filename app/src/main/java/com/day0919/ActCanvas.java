@@ -7,19 +7,76 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.SubMenu;
 import android.view.View;
+import android.widget.Toast;
 
 /**
  * Created by USER on 2016-09-28.
  */
 
 public class ActCanvas extends AppCompatActivity {
+
+    public static final int LINE = 0, CIRCLE = 1, RECT = 2;
+    public int drawShape = LINE;
+    public int drawColor = LINE;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(new CanvasTest(this));
 
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(0, 1, 0, "선");
+        menu.add(0, 2, 0, "원");
+        menu.add(0, 3, 0, "네모");
+
+        SubMenu submenu = menu.addSubMenu("색상");
+        submenu.add(0, 4, 0, "빨강");
+        submenu.add(0, 5, 0, "파랑");
+        submenu.add(0, 6, 0, "초록");
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case 1:
+                drawShape = LINE;
+                Toast.makeText(this, "", Toast.LENGTH_LONG).show();
+                break;
+
+            case 2:
+                drawShape = CIRCLE;
+                Toast.makeText(this, "", Toast.LENGTH_LONG).show();
+                break;
+
+            case 3:
+                drawShape = RECT;
+                break;
+
+            case 4:
+                drawColor = Color.RED;
+                break;
+
+            case 5:
+                drawColor = Color.BLUE;
+                break;
+
+            case 6:
+                drawColor = Color.GREEN;
+                break;
+        }
+
+        return true;
     }
 
     class CanvasTest extends View {
