@@ -2,53 +2,69 @@ package com.day0919;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
-import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.TranslateAnimation;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 public class ActTetris extends AppCompatActivity {
     FrameLayout playScr = null;
-
     int way[][] = new int[10][10];
-
     View tile[][] = new View[10][10];
-
     int[] userPos = new int[2];
 
-    public void initialTile() {
+    public void waySetting() {
         way[0][0] = 1;
         way[1][0] = 1;
-        way[2][0] = 1;
-        way[3][0] = 1;
+        way[1][1] = 1;
+        way[2][1] = 1;
         way[3][1] = 1;
-        way[3][2] = 1;
+        way[4][1] = 1;
+        way[5][1] = 1;
+        way[7][1] = 1;
+        way[8][1] = 1;
+        way[5][2] = 1;
+        way[7][2] = 1;
+        way[8][2] = 1;
+        way[1][3] = 1;
+        way[2][3] = 1;
         way[3][3] = 1;
-        way[3][4] = 1;
-        way[4][4] = 1;
-        way[5][4] = 1;
-        way[6][4] = 1;
+        way[4][3] = 1;
+        way[5][3] = 1;
+        way[7][3] = 1;
+        way[8][3] = 1;
+        way[1][4] = 1;
+        way[7][4] = 1;
+        way[8][4] = 1;
+        way[1][5] = 1;
+        way[3][5] = 1;
+        way[4][5] = 1;
+        way[5][5] = 1;
         way[6][5] = 1;
-        way[6][6] = 1;
+        way[7][5] = 1;
+        way[8][5] = 1;
+        way[1][6] = 1;
+        way[3][6] = 1;
+        way[1][7] = 1;
+        way[2][7] = 1;
+        way[3][7] = 1;
+        way[5][7] = 1;
         way[6][7] = 1;
-        way[6][8] = 1;
-        way[6][9] = 1;
-        way[7][9] = 1;
-        way[8][9] = 1;
+        way[7][7] = 1;
+        way[8][7] = 1;
+        way[5][8] = 1;
         way[9][9] = 1;
 
+    }
+
+    public void initialTile() {
+        waySetting();
         tileReady();
         tilePlank();
-
     }
 
     public void tileReady() {
@@ -70,7 +86,7 @@ public class ActTetris extends AppCompatActivity {
     }
 
     ImageView user = null;
-    int tenWidth, tenHeight;
+    int tenWid = 0, tenHei = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -83,35 +99,27 @@ public class ActTetris extends AppCompatActivity {
         playScr.post(new Runnable() {
             @Override
             public void run() {
-                tenWidth = (int) (playScr.getWidth() / 10);
-                tenHeight = (int) (playScr.getHeight() / 10);
+                tenWid = (int) (playScr.getWidth() / 10);
+                tenHei = (int) (playScr.getHeight() / 10);
 
                 for (int i = 0; i < tile.length; i++) {
                     for (int j = 0; j < tile[i].length; j++) {
                         View nowTile = tile[i][j];
-                        FrameLayout.LayoutParams flParam = new FrameLayout.LayoutParams(tenWidth, tenHeight);
-                        flParam.leftMargin = i * tenWidth;
-                        flParam.topMargin = j * tenHeight;
+                        FrameLayout.LayoutParams flParam = new FrameLayout.LayoutParams(tenWid, tenHei);
+                        flParam.leftMargin = i * tenWid;
+                        flParam.topMargin = j * tenHei;
                         nowTile.setLayoutParams(flParam);
                         playScr.addView(nowTile);
                     }
                 }
 
-                leftBtn = (ImageView) findViewById(R.id.leftarrow);
-                rightBtn = (ImageView) findViewById(R.id.rightarrow);
-                upBtn = (ImageView) findViewById(R.id.uparrow);
-                downBtn = (ImageView) findViewById(R.id.downarrow);
-
-                leftBtn.setOnTouchListener(otl);
-                rightBtn.setOnTouchListener(otl);
-                upBtn.setOnTouchListener(otl);
-                downBtn.setOnTouchListener(otl);
+                settingBtn();
 
                 user = new ImageView(ActTetris.this);
                 // user.setBackgroundColor(Color.GREEN);
                 user.setBackgroundResource(R.mipmap.ic_launcher);
-                Log.w("size", "tenWidth : " + tenWidth + ", tenHeight : " + tenHeight);
-                FrameLayout.LayoutParams userParam = new FrameLayout.LayoutParams(tenWidth, tenHeight);
+
+                FrameLayout.LayoutParams userParam = new FrameLayout.LayoutParams(tenWid, tenHei);
                 userParam.leftMargin = 0;
                 userParam.topMargin = 0;
                 user.setLayoutParams(userParam);
@@ -120,7 +128,18 @@ public class ActTetris extends AppCompatActivity {
             }
         });
 
+    }
 
+    public void settingBtn() {
+        leftBtn = (ImageView) findViewById(R.id.leftarrow);
+        rightBtn = (ImageView) findViewById(R.id.rightarrow);
+        upBtn = (ImageView) findViewById(R.id.uparrow);
+        downBtn = (ImageView) findViewById(R.id.downarrow);
+
+        leftBtn.setOnTouchListener(otl);
+        rightBtn.setOnTouchListener(otl);
+        upBtn.setOnTouchListener(otl);
+        downBtn.setOnTouchListener(otl);
     }
 
     ImageView lastBtn = null;
@@ -134,7 +153,7 @@ public class ActTetris extends AppCompatActivity {
             if (action == MotionEvent.ACTION_DOWN) {
                 clicking = true;
                 lastBtn = (ImageView) v;
-                handle(v);
+                moveStep(v);
                 v.setBackgroundColor(Color.RED);
             } else if (action == MotionEvent.ACTION_UP) {
                 clicking = false;
@@ -146,13 +165,13 @@ public class ActTetris extends AppCompatActivity {
 
     FrameLayout.LayoutParams userParam = null;
 
-    int moveLeft = 0;
-    int moveTop = 0;
-    boolean aning = false;
-    boolean clicking = false;
+    int moveLeft = 0, moveTop = 0;
+    boolean aning = false, clicking = false;
     TranslateAnimation ani = null;
 
-    public void handle(View v) {
+    public ImageView leftBtn, rightBtn, upBtn, downBtn;
+
+    public void moveStep(View clickBtn) {
         userParam = (FrameLayout.LayoutParams) user.getLayoutParams();
         int posLeft = 0;
         int posTop = 0;
@@ -160,22 +179,23 @@ public class ActTetris extends AppCompatActivity {
         moveLeft = 0;
         moveTop = 0;
 
-        if (v == leftBtn) {
+        if (clickBtn == leftBtn) {
             posLeft = -1;
-            moveLeft = -tenWidth;
-        } else if (v == rightBtn) {
+            moveLeft = -tenWid;
+        } else if (clickBtn == rightBtn) {
             posLeft = +1;
-            moveLeft = +tenWidth;
-        } else if (v == upBtn) {
+            moveLeft = +tenWid;
+        } else if (clickBtn == upBtn) {
             posTop = -1;
-            moveTop = -tenHeight;
-        } else if (v == downBtn) {
+            moveTop = -tenHei;
+        } else if (clickBtn == downBtn) {
             posTop = +1;
-            moveTop = +tenHeight;
+            moveTop = +tenHei;
         }
 
-        int tmpCol = userPos[1] + posLeft;
         int tmpRow = userPos[0] + posTop;
+        int tmpCol = userPos[1] + posLeft;
+
 
         if ((0 <= tmpRow && tmpRow < way.length)
                 && (0 <= tmpCol && tmpCol < way[tmpRow].length)
@@ -204,7 +224,7 @@ public class ActTetris extends AppCompatActivity {
                 @Override
                 public void onAnimationEnd(Animation animation) {
                     aning = false;
-                    if (clicking) handle(lastBtn);
+                    if (clicking) moveStep(lastBtn);
                 }
 
                 @Override
@@ -225,54 +245,6 @@ public class ActTetris extends AppCompatActivity {
 
             userPos[0] = tmpRow;
             userPos[1] = tmpCol;
-
-        }
-    }
-    int cnt = 0;
-
-    final Handler handler = new Handler() {
-        public void handleMessage(Message msg){
-            if (cnt++ < 15) {
-                anii();
-
-                try {Thread.sleep(66);} catch (InterruptedException e) {}
-
-                new Thread() {
-                    public void run() {
-                        Message msg = handler.obtainMessage();
-                        handler.sendMessage(msg);
-                    }
-                }.start();
-            }
-
-        }
-    };
-
-
-    public ImageView leftBtn, rightBtn, upBtn, downBtn;
-
-    public void anii() {
-        userParam.leftMargin += (moveLeft / 14);
-        userParam.topMargin += (moveTop / 14);
-
-        user.setLayoutParams(userParam);
-
-
-    }
-
-    class Anim extends Thread {
-        int moveLeft = 0;
-        int moveTop = 0;
-
-        public Anim(int moveLeft, int moveTop) {
-            this.moveLeft = moveLeft;
-            this.moveTop = moveTop;
-        }
-
-        @Override
-        public void run() {
-            super.run();
-
 
         }
     }
