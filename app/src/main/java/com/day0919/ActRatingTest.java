@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -17,10 +18,24 @@ import android.widget.Toast;
 public class ActRatingTest extends AppCompatActivity {
 
     ImageView[] imgView = new ImageView[9];
+    TextView[] voteView = new TextView[9];
+
     int[] voteCnt = new int[9];
     final String imgName[] = { "독서하는 소녀", "꽃장식 모자 소녀", "부채를 든 소녀",
             "이레느깡 단 베르양", "잠자는 소녀", "테라스의 두 자매", "피아노 레슨", "피아노 앞의 소녀들",
             "해변에서" };
+
+    final int[] voteTvId = {
+            R.id.vote1,
+            R.id.vote2,
+            R.id.vote3,
+            R.id.vote4,
+            R.id.vote5,
+            R.id.vote6,
+            R.id.vote7,
+            R.id.vote8,
+            R.id.vote9,
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,16 +54,22 @@ public class ActRatingTest extends AppCompatActivity {
                 R.id.img9,
         };
 
+        //
+
         for (int i = 0; i < imgId.length; i++) {
             final int index = i;
             imgView[i] = (ImageView) findViewById(imgId[i]);
+            voteView[i] = (TextView) findViewById(voteTvId[i]);
+
             imgView[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     voteCnt[index]++;
+                    voteView[index].setText(voteCnt[index] + "");
                     Toast.makeText(ActRatingTest.this, imgName[index] + " " + voteCnt[index] + "표", Toast.LENGTH_SHORT).show();
                 }
             });
+
 
         }
 
